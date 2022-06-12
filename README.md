@@ -36,6 +36,10 @@ Regenerating all the figures requires running in the directory ``codes`` both
 a GPU (running on a GPU simultaneously with CPU cores); the other codes need
 only CPUs.
 
+The command-line tool ``convert`` uses [ImageMagick](https://imagemagick.org)
+for conversion of PDF files to JPEG files; install ImageMagick to enable such
+conversion.
+
 ********************************************************************************
 
 Copyright license

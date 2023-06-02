@@ -160,8 +160,8 @@ def infer(inf_loader, model, num_batches, probs=False):
         s, r = scores_and_results(output, target, probs)
         # Record the scores and results.
         if k == 0:
-            scores = s
-            results = r
+            scores = s.copy()
+            results = r.copy()
         else:
             scores = np.concatenate((scores, s))
             results = np.concatenate((results, r))

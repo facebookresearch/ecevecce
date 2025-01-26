@@ -399,7 +399,7 @@ def plotnull(ns, points, transform=None, suffix=''):
         plt.xlabel('$x$')
         plt.ylabel('fraction of P-values $\\leq x$')
         # Plot the empirical cumulative distribution functions.
-        frac = np.arange(1 / points, 1 + 1 / points, 1 / points)[:points]
+        frac = np.arange(1 / points, 1 + 1 / points / 2, 1 / points)[:points]
         for j in range(len(ns)):
             if stat == 'kolmogorov_smirnov':
                 plt.plot(ksc[j, :], frac, color='k')

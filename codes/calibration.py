@@ -243,7 +243,7 @@ def equiprob(r, s, nbins, filename='equiprob.pdf', n_resamp=0):
         _, binrs, binss = bintwo(nbins, rs, ss, ss)
         # Use the light gray, "gainsboro".
         plt.plot(binss, binrs, 'gainsboro')
-    _, binr, bins = bintwo(nbins, r, s, s)
+    nbin, binr, bins = bintwo(nbins, r, s, s)
     # Use the solid black, "k".
     plt.plot(bins, binr, 'k*:')
     zeroone = np.asarray((0, 1))
@@ -257,13 +257,12 @@ def equiprob(r, s, nbins, filename='equiprob.pdf', n_resamp=0):
     plt.savefig(filename, bbox_inches='tight')
     plt.close()
     # Calculate summary statistics.
-    binwidth = 1 / nbins
     babs = np.abs(binr - bins)
     babs[np.where(np.isnan(babs))] = 0
-    ece1 = np.sum(binwidth * babs)
+    ece1 = np.sum(nbin * babs / len(r))
     bsqr = np.square(binr - bins)
     bsqr[np.where(np.isnan(bsqr))] = 0
-    ece2 = np.sum(binwidth * bsqr)
+    ece2 = np.sum(nbin * bsqr / len(r))
     return ece1, ece2
 
 
@@ -343,10 +342,11 @@ def equisamp(
     plt.savefig(filename, bbox_inches='tight')
     plt.close()
     # Calculate summary statistics.
-    sskip = s[::(len(s) // nbins)]
-    binwidth = np.append(sskip[1:nbins], 1) - sskip[:nbins]
-    ece1 = np.sum(binwidth * np.abs(binr - bins))
-    ece2 = np.sum(binwidth * np.square(binr - bins))
+    ns = len(s) // nbins
+    props = np.ones((nbins)) * ns / len(s)
+    props[-1] = (len(s) - ((nbins - 1) * ns)) / len(s)
+    ece1 = np.sum(props * np.abs(binr - bins))
+    ece2 = np.sum(props * np.square(binr - bins))
     return ece1, ece2
 
 

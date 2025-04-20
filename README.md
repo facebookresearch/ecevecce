@@ -4,6 +4,14 @@ by Imanol Arrieta-Ibarra, Paman Gujral, Jonathan Tannen, Mark Tygert, and
 Cherie Xu. This repository also provides the LaTeX and BibTeX sources required
 for replicating the paper.
 
+_N.B._: The latest version of the codes calculates a version of ECEs that is
+different from that in the original paper. The different version is probably
+the most popular among those of the machine-learning community. To reproduce
+the paper as published, please use the fourth commit, which is available on
+[GitHub](https://github.com/facebookresearch/ecevecce/commit/2d413c7) ... or
+for results computed using the latest version of the codes, see the talk on
+[Zenodo](https://zenodo.org/records/15238204)
+
 The main files in the repository are the following:
 
 ``tex/ecevecce.pdf``
